@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index View Here!</h2>
+<p>This is some custom content</p>
+
+@* Push a tag to a section of the layout here *@
+@section Meta
+{
+    <meta name="description" content="This is a description of the Index View">
+}
+
+@section Scripts
+{
+    <script >
+    $(document).ready(function() {
+      alert('Hello index!');
+    })
+    </script>
+}
