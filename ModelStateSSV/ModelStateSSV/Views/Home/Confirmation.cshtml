@@ -1,0 +1,12 @@
+﻿@model ModelStateSSV.Models.ApptRequest
+
+@{
+    ViewBag.Title = "Confirmation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Confirmation</h2>
+
+<p>Thank you @Model.ClientName for booking your appointment on</p>
+<p>@Model.Date.ToShortDateString()</p>
+<p>We look forward to seeing you!</p>
