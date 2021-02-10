@@ -9,7 +9,7 @@ namespace AttributesSSV.Models
         [Required(ErrorMessage = "Please enter your name")]
         public string ClientName { get; set; }
         
-        [Required(ErrorMessage = "You must enter a dates")]
+        [Required(ErrorMessage = "You must enter a date")]
         [FutureDate(ErrorMessage = "Cannot book an appointment in the past")]
         [NoWeekend(ErrorMessage = "Must book on weekday (Mon - Fri)")]
         public DateTime Date { get; set; }
