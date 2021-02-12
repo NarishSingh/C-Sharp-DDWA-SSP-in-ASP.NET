@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h1>Singh Corp</h1>
+    <p>
+        Click here to
+        @Html.ActionLink("view employees", "List", "Employees")
+    </p>
+</div>
