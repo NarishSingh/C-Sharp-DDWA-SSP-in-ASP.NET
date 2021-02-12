@@ -24,7 +24,7 @@ namespace EmployeeMS.Controllers
                     PhoneNum = e.PhoneNum,
                     EmplId = e.Id
                 };
-*/
+                */
 
             //method syntax equivalent
             IEnumerable<EmplListVM> model = EmplRepoStub.ReadAllEmployees()
@@ -66,6 +66,22 @@ namespace EmployeeMS.Controllers
         [HttpPost]
         public ActionResult Add(AddEmplVM model)
         {
+            if (!ModelState.IsValid)
+            {
+                //have to manually reload select list item list as nothing is coming back from model data
+                model.Departments = DeptRepoStub.ReadAllDepartments()
+                    .Select(
+                        d => new SelectListItem
+                        {
+                            Text = d.Name,
+                            Value = d.Id.ToString()
+                        }
+                    )
+                    .ToList();
+                
+                return View(model); //return them to add page on fail
+            }
+
             Employee add = new Employee
             {
                 FirstName = model.FirstName,
@@ -73,7 +89,7 @@ namespace EmployeeMS.Controllers
                 PhoneNum = model.PhoneNum,
                 DepartmentId = model.DeptId
             };
-            
+
             EmplRepoStub.AddEmployee(add);
 
             return RedirectToAction("List"); //redirect them to list view on completion
