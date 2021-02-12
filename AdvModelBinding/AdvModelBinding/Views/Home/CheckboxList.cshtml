@@ -1,0 +1,31 @@
+﻿@model AdvModelBinding.Models.CategoryModels.CategoryPickerViewModel
+
+@{
+    ViewBag.Title = "Checkbox List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Checkbox List</h2>
+<p>
+    The way this works is to create a view model and class that wraps the category class
+    from the database in order to add an IsSelected property for the view. The IsSelected
+    will get picked up by the check box model binding, but we also need a hidden field for the
+    actual id or we won't know which ones got selected.
+</p>
+
+<h3>Categories</h3>
+@using (Html.BeginForm("CheckboxList", "Home", FormMethod.Post))
+{
+    for (int i = 0; i < Model.CheckboxItems.Count; i++)
+    {
+        <p>
+            @* the checkbox *@
+            @Html.CheckBoxFor(m => m.CheckboxItems[i].IsSelected)
+            <span>@Model.CheckboxItems[i].Category.CategoryName</span>
+
+            @* hidden id *@
+            @Html.HiddenFor(m => m.CheckboxItems[i].Category.CategoryId)
+        </p>
+    }
+    <input type="submit" value="Submit Form"/>
+}
