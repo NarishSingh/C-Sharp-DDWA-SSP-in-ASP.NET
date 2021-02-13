@@ -40,7 +40,11 @@
                             @Html.ActionLink("Edit", "Edit", "Employees", new {id = empl.EmplId}, null)
                         </td>
                         <td>
-                            @* TODO Delete *@
+                            @* Inline form with an alert to confirm deletion *@
+                            @using (Html.BeginForm("Delete", "Employees", new {id = empl.EmplId}, FormMethod.Post))
+                            {
+                                <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete @empl.Name?')">Delete</button>
+                            }
                         </td>
                     </tr>
                 }

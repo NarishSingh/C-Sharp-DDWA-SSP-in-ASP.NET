@@ -118,7 +118,16 @@ namespace EmployeeMS.Controllers
 
             return RedirectToAction("List");
         }
-        
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            EmplRepoStub.DeleteEmployee(id);
+
+            return RedirectToAction("List");
+        }
+
+        /*HELPERS*/
         /// <summary>
         /// Load Departments for drop down selects
         /// </summary>
