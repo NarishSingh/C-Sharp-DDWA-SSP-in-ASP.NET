@@ -9,7 +9,6 @@ namespace EmployeeMS.Models.Stubs
 
         static EmplRepoStub()
         {
-            // TODO add dept's
             _employees = new List<Employee>
             {
                 new Employee
@@ -36,7 +35,7 @@ namespace EmployeeMS.Models.Stubs
             };
         }
 
-        public static void AddEmployee(Employee e)
+        public static void CreateEmployee(Employee e)
         {
             if (_employees.Any())
             {

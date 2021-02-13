@@ -49,15 +49,7 @@ namespace EmployeeMS.Controllers
         {
             AddEmplVM model = new AddEmplVM
             {
-                Departments = DeptRepoStub.ReadAllDepartments()
-                    .Select(
-                        d => new SelectListItem
-                        {
-                            Text = d.Name,
-                            Value = d.Id.ToString()
-                        }
-                    )
-                    .ToList()
+                Departments = GetDepartmentsSelectListItems()
             };
 
             return View(model);
@@ -69,16 +61,7 @@ namespace EmployeeMS.Controllers
             if (!ModelState.IsValid)
             {
                 //have to manually reload select list item list as nothing is coming back from model data
-                model.Departments = DeptRepoStub.ReadAllDepartments()
-                    .Select(
-                        d => new SelectListItem
-                        {
-                            Text = d.Name,
-                            Value = d.Id.ToString()
-                        }
-                    )
-                    .ToList();
-                
+                model.Departments = GetDepartmentsSelectListItems();
                 return View(model); //return them to add page on fail
             }
 
@@ -90,9 +73,67 @@ namespace EmployeeMS.Controllers
                 DepartmentId = model.DeptId
             };
 
-            EmplRepoStub.AddEmployee(add);
+            EmplRepoStub.CreateEmployee(add);
 
             return RedirectToAction("List"); //redirect them to list view on completion
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            Employee empl = EmplRepoStub.ReadEmployee(id);
+
+            var model = new EditEmplVM
+            {
+                EmployeeId = empl.Id,
+                FirstName = empl.FirstName,
+                LastName = empl.LastName,
+                DeptId = empl.DepartmentId,
+                PhoneNum = empl.PhoneNum,
+                Departments = GetDepartmentsSelectListItems()
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(EditEmplVM model)
+        {
+            if (!ModelState.IsValid)
+            {
+                model.Departments = GetDepartmentsSelectListItems();
+                return View(model);
+            }
+
+            Employee edit = new Employee
+            {
+                Id = model.EmployeeId,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                PhoneNum = model.PhoneNum,
+                DepartmentId = model.DeptId
+            };
+
+            EmplRepoStub.EditEmployee(edit);
+
+            return RedirectToAction("List");
+        }
+        
+        /// <summary>
+        /// Load Departments for drop down selects
+        /// </summary>
+        /// <returns>List of SelectListItem's for Views</returns>
+        private static List<SelectListItem> GetDepartmentsSelectListItems()
+        {
+            return DeptRepoStub.ReadAllDepartments()
+                .Select(
+                    d => new SelectListItem
+                    {
+                        Text = d.Name,
+                        Value = d.Id.ToString()
+                    }
+                )
+                .ToList();
         }
     }
 }

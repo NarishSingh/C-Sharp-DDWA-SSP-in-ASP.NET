@@ -4,8 +4,10 @@ using System.Web.Mvc;
 
 namespace EmployeeMS.Models.ViewModels
 {
-    public class AddEmplVM
+    public class EditEmplVM
     {
+        public int EmployeeId { get; set; }
+        
         [Required(ErrorMessage = "Please enter first name")]
         public string FirstName { get; set; }
         

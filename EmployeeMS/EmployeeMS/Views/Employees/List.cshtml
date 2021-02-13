@@ -10,7 +10,6 @@
 
     <div class="row">
         <div class="col-xs-12">
-            @* TODO add link *@
             <p>
                 @Html.ActionLink("Add new employee", "Add", "Employees")
             </p>
@@ -38,7 +37,7 @@
                         <td>@empl.PhoneNum</td>
                         <td>@empl.DeptName</td>
                         <td>
-                            @* TODO Edit *@
+                            @Html.ActionLink("Edit", "Edit", "Employees", new {id = empl.EmplId}, null)
                         </td>
                         <td>
                             @* TODO Delete *@
