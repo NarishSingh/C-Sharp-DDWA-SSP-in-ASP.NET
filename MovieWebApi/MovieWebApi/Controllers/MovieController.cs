@@ -1,8 +1,10 @@
 ﻿using System.Web.Http;
+using System.Web.Http.Cors;
 using MovieWebApi.Models;
 
 namespace MovieWebApi.Controllers
 {
+    // [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class MovieController : ApiController
     {
         /// <summary>

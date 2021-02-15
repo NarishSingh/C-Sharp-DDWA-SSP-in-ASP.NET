@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX on Movie Web API</title>
+</head>
+<body>
+<h1>AJAX It</h1>
+<p>Click Button to load movie with that id</p>
+
+<p>
+    <label for="txtMovieId">Id:</label>
+    <input type="text" id="txtMovieId"/>
+</p>
+
+<p>
+    <button onclick="loadMovie()">Load Movie</button>
+</p>
+
+<p id="movieDetails">
+
+</p>
+
+<script src="../Scripts/jquery-3.5.1.min.js"></script>
+<script>
+    function loadMovie() {
+        let movieId = $('#txtMovieId').val();
+
+        $.getJSON(
+            'http://localhost:5000/movies/get/' + movieId,
+            function (data) {
+                let p = $('#movieDetails');
+
+                p.text(data.Title);
+            }
+        )
+    }
+</script>
+</body>
+</html>
