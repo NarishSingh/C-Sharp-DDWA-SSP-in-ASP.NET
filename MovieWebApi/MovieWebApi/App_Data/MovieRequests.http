@@ -6,4 +6,13 @@ Accept: application/json
 GET http://localhost:5000/movies/get?id=1
 Accept: application/json
 
+### POST NEW MOVIE
+POST http://localhost:5000/movies/add
+Content-Type: application/json
+Accept: */*
+
+{
+  "Title": "The Lion King",
+  "Rating": "G"
+}
 
