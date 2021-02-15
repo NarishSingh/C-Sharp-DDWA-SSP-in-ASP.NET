@@ -27,3 +27,6 @@ Accept: */*
   "Rating": "PG"
 }
 
+### DELETE LION KING
+DELETE http://localhost:5000/movies/delete?id=1
+Content-Type: application/json

@@ -79,7 +79,7 @@ namespace MovieWebApi.Controllers
                 Title = req.Title,
                 Rating = req.Rating
             };
-            
+
             MovieRepoStub.Create(m);
 
             return Created($"movies/get/{m.Id}", m);
@@ -101,7 +101,7 @@ namespace MovieWebApi.Controllers
 
             Movie m = MovieRepoStub.ReadById(req.Id);
 
-            if (m==null)
+            if (m == null)
             {
                 return NotFound();
             }
@@ -111,6 +111,27 @@ namespace MovieWebApi.Controllers
             MovieRepoStub.Update(m);
 
             return Ok(m);
+        }
+
+        /// <summary>
+        /// DELETE a movie record using query string
+        /// </summary>
+        /// <param name="id">int for a valid id</param>
+        /// <returns>200 OK if delete successful, 404 Not Found if id is invalid</returns>
+        [Route("movies/delete")]
+        [AcceptVerbs("DELETE")]
+        public IHttpActionResult Delete(int id)
+        {
+            Movie m = MovieRepoStub.ReadById(id);
+
+            if (m == null)
+            {
+                return NotFound();
+            }
+
+            MovieRepoStub.Delete(m.Id);
+
+            return Ok();
         }
     }
 }
