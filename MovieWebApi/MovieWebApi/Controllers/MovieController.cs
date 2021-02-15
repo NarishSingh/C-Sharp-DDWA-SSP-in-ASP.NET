@@ -1,5 +1,4 @@
 ﻿using System.Web.Http;
-using System.Web.Http.Results;
 using MovieWebApi.Models;
 
 namespace MovieWebApi.Controllers
@@ -84,6 +83,34 @@ namespace MovieWebApi.Controllers
             MovieRepoStub.Create(m);
 
             return Created($"movies/get/{m.Id}", m);
+        }
+
+        /// <summary>
+        /// PUT an update to a movie record
+        /// </summary>
+        /// <param name="req">UpdateMovieRequest obj, well formed</param>
+        /// <returns>200 OK if update successful, 404 Not Found if id is invalid</returns>
+        [Route("movies/update")]
+        [AcceptVerbs("PUT")]
+        public IHttpActionResult Update(UpdateMovieRequest req)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            Movie m = MovieRepoStub.ReadById(req.Id);
+
+            if (m==null)
+            {
+                return NotFound();
+            }
+
+            m.Title = req.Title;
+            m.Rating = req.Rating;
+            MovieRepoStub.Update(m);
+
+            return Ok(m);
         }
     }
 }

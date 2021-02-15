@@ -16,3 +16,14 @@ Accept: */*
   "Rating": "G"
 }
 
+### UPDATE FIRST ENTRY
+PUT http://localhost:5000/movies/update
+Content-Type: application/json
+Accept: */*
+
+{
+  "Id": 1,
+  "Title": "Ghostbusters",
+  "Rating": "PG"
+}
+
