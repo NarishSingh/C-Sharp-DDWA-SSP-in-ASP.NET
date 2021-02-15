@@ -1,0 +1,9 @@
+﻿### READ ALL MOVIES FROM REPO STUB
+GET http://localhost:5000/movies/all
+Accept: application/json
+
+### READ BY ID - 1
+GET http://localhost:5000/movies/get?id=1
+Accept: application/json
+
+
