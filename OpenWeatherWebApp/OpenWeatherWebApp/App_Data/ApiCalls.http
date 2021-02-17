@@ -1,0 +1,9 @@
+﻿GET http://api.openweathermap.org/data/2.5/weather?zip=10001,us&units=imperial&appid=f29ed23e97e67d948334f9b71c66421d
+Accept: application/json
+
+### Get weather for 10001
+
+GET http://api.openweathermap.org/data/2.5/forecast?zip=10001,us&units=imperial&appid=f29ed23e97e67d948334f9b71c66421d
+Accept: application/json
+
+### Get 7 day forecast for 10001

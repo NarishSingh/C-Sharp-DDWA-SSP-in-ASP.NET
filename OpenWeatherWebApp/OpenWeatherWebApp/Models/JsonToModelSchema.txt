@@ -1,0 +1,38 @@
+﻿Json:
+list
+    |
+    |-[array]
+        |-dt_txt
+        |-main
+        |    |-temp
+        |    |-pressure
+        |    |-humidity
+        |
+        |-weather
+        |    |-main
+        |    |-description
+        |    |-icon***
+        |
+        |-wind
+        |   |-speed
+        |   |-deg
+
+
+Model:
+ListData
+    |
+    |-Forecast3hrData
+        |-StartDateTime
+        |-MainData
+        |    |-Temp
+        |    |-Pressure
+        |    |-Humidity
+        |
+        |-WeatherData
+        |    |-Condition
+        |    |-Condition
+        |    |-Icon***
+        |
+        |-WindData
+        |   |-Speed
+        |   |-Degree
